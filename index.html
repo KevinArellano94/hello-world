@@ -9,43 +9,43 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <!-- Adrian is gay -->
+        <!-- Comment -->
         <div class="jumbotron text-center">
             <p>This is Kevin's WebSite.</p>
         </div>
         
         <h1>The XMLHttpRequest Object</h1>
-
-<p id="demo">Let AJAX change this text.</p>
-
-<button type="button" onclick="loadDoc()">Change Content</button>
-
-<script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "ajax_info.txt", true);
-  xhttp.send();
-}
-</script>
+        <p id="demo">Let AJAX change this text.</p>
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("p").click(function(){
-    $(this).hide();
-  });
-});
-</script>
-</head>
-<body>
-
-<p>If you click on me, I will disappear.</p>
-<p>Click me away!</p>
-<p>Click me too!</p>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+        <script>
+            function loadDoc()
+            {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function()
+                {
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "ajax_info.txt", true);
+                xhttp.send();
+            }
+        </script>
+        
+        <script>
+            $(document).ready(function()
+            {
+                $("p").click(function()
+                {
+                    $(this).hide();
+                });
+            });
+        </script>
+        
+        <p>If you click on me, I will disappear.</p>
+        <p>Click me away!</p>
+        <p>Click me too!</p>
     </body>
 </html>
