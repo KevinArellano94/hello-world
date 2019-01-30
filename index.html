@@ -44,25 +44,6 @@
             <input type = "submit" value = "login"/><br />
         </form>
         
-        <?php
-            if (isset($_POST['username']) && isset($_POST['password']))
-            {
-                echo $_POST['username']. " " . $_POST['password'] . "<br>";
-                $sql = "SELECT * FROM login_table WHERE login_first_name = '" . $_POST['username'] . "'";
-                $result = $connection_database->query($sql);
-                
-                if ($result->num_rows > 0)
-                {
-                    while($row = $result->fetch_assoc())
-                    {
-                        echo "Welcome: " . $row["login_email_address"] . "<br>";
-                    }
-                } else {
-                    echo "0 results";
-                }
-            }
-        ?>
-        
         <script>
             function loadDoc()
             {
