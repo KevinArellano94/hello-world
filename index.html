@@ -19,6 +19,49 @@
         <p id="demo">Let AJAX change this text.</p>
         
         <button type="button" onclick="loadDoc()">Change Content</button>
+        
+        <?php
+  $connection_database = mysqli_connect(
+    "localhost",                            /* Location */
+    "id4748912_database_username_login",    /* Username */
+    "login123",                             /* Password */
+    "id4748912_database_login" );           /* Database */
+
+  if(!$connection_database)
+  {
+    echo "Not connected";
+  } else {
+    echo "Connected";
+  }
+?>
+<html>
+  <form action = "index_login.php" method = "post">
+    <b>Username</b><br />
+    <input type = "text" name = "username" /><br />
+    <b>Password</b><br />
+    <input type = "password" name = "password" /><br />
+    <input type = "submit" value = "login"/><br />
+  </form>
+</html>
+<?php
+  if (isset($_POST['username']) && isset($_POST['password']))
+  {
+    echo $_POST['username']. " " . $_POST['password'] . "<br>";
+
+    $sql = "SELECT * FROM login_table WHERE login_first_name = '" . $_POST['username'] . "'";
+    $result = $connection_database->query($sql);
+    if ($result->num_rows > 0)
+    {
+      while($row = $result->fetch_assoc())
+      {
+        echo "Welcome: " . $row["login_email_address"] . "<br>";
+      }
+    } else {
+      echo "0 results";
+    }
+  }
+?>
+        
         <script>
             function loadDoc()
             {
