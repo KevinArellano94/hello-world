@@ -8,11 +8,138 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type = "text/javascript" src = "https://www.youtube.com/iframe_api"></script>
     </head>
     <body>
         <!-- Comment -->
         <div class="jumbotron text-center">
             <p>This is Kevin's WebSite.</p>
+        </div>
+        
+        <div>
+            <script>
+               var player;
+               
+               function myFunction( )
+               {
+                    var x = document.getElementById( "mySelect" ).value;
+                    //document.getElementById( "demo" ).innerHTML = "You selected: " + x;
+                    
+                    if ( x == "rL_RslBjXto" )
+                    {
+                         var y = "<div data-video = 'rL_RslBjXto' data-autoplay = '0' data-loop = '1' id = 'youtube-audio'></div>"
+                         document.getElementById( "demo" ).innerHTML = y;
+                    }
+                    else if ( x == "nO8C0jpsW7Y" )
+                    {
+                         var y = "<div data-video = 'nO8C0jpsW7Y' data-autoplay = '0' data-loop = '1' id = 'youtube-audio'></div>"
+                         document.getElementById( "demo" ).innerHTML = y;
+                    }
+                    else if ( x == "V-x87xt6rzU" )
+                    {
+                         var y = "<div data-video = 'V-x87xt6rzU' data-autoplay = '0' data-loop = '1' id = 'youtube-audio'></div>"
+                         document.getElementById( "demo" ).innerHTML = y;
+                    }
+                    else if ( x == "IQsXnldCDeU" )
+                    {
+                         var y = "<div data-video = IQsXnldCDeU' data-autoplay = '0' data-loop = '1' id = 'youtube-audio'></div>"
+                         document.getElementById( "demo" ).innerHTML = y;
+                    }
+                    else
+                    {
+                         alert( "Select a song..." );
+                    }
+                    
+                    onYouTubeIframeAPIReady( y )
+               }
+               
+               function onYouTubeIframeAPIReady( )
+               {
+                    var ctrlq = document.getElementById( "youtube-audio" );
+                    ctrlq.innerHTML = '<img id = "youtube-icon" src=  ""/><div id = "youtube-player"></div>';
+                    ctrlq.style.cssText = 'width: 150px; margin: 2em auto; cursor: pointer; cursor: hand; display: none';
+                    ctrlq.onclick = toggleAudio;
+                    
+                    player = new YT.Player( 'youtube-player',
+                    {
+                         height: '0',
+                         width: '0',
+                         videoId: ctrlq.dataset.video,
+                         playerVars:
+                         {
+                              autoplay: ctrlq.dataset.autoplay,
+                              loop: ctrlq.dataset.loop,
+                         },
+                         events:
+                         {
+                              'onReady': onPlayerReady,
+                              'onStateChange': onPlayerStateChange 
+                         }
+                    } );
+               }
+               
+               function togglePlayButton( play )
+               {
+                    document.getElementById( "youtube-icon" ).src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
+               }
+               
+               function toggleAudio( )
+               {
+                    if ( player.getPlayerState( ) == 1 || player.getPlayerState( ) == 3 )
+                    {
+                         player.pauseVideo( );
+                         togglePlayButton( false );
+                    } else {
+                         player.playVideo( );
+                    togglePlayButton( true );
+                    }
+               }
+               
+               function onPlayerReady( event )
+               {
+                    player.setPlaybackQuality( "small" );
+                    document.getElementById( "youtube-audio" ).style.display = "block";
+                    togglePlayButton( player.getPlayerState( ) !== 5 );
+               }
+               
+               function onPlayerStateChange( event )
+               {
+                    if ( event.data === 0 )
+                    {
+                         togglePlayButton( false );
+                    }
+               }
+          </script>
+<div style = "display: flex; justify-content: center; align-items: center;">
+          <div style = "width: 400px; height: 300px;">
+               
+               <select id = "mySelect" onchange = "myFunction( )">
+                    <option value = "">
+                         ...
+                    </option>
+                    <!--ALCEST-->
+                    <option value = "V-x87xt6rzU">
+                         Alcest - Eclosion
+                    </option>
+                    <option value = "IQsXnldCDeU">
+                         Alcest - Kodama
+                    </option>
+                    
+                    <option value = "rL_RslBjXto">
+                         Daft Punk - Harder Better Faster Stronger (Reality Test Bootleg)
+                    </option>
+                    <option value = "nO8C0jpsW7Y">
+                         Foster the People - Pumped Up Kicks (Aiju Remix)
+                    </option>
+                    
+               </select>
+               <div style = "clear: both; margin: 10px; text-align: center">
+                    <p>The audio player is created with the YouTube API.</p>
+                    <p id="demo"></p>
+               </div>
+           </div>
+     </div>
+     <div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;display:block !important;'><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&amp;utm_campaign=000_logo&amp;utm_medium=website&amp;utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"  alt="www.000webhost.com"></a></div>
         </div>
         
         <h1>The XMLHttpRequest Object</h1>
